@@ -4,7 +4,8 @@ import numpy as np
 
 class SVM:
 
-    def __init__(self, training_set):
+    def __init__(self, training_set, kernel):
+        self.kernel = kernel
         self.X = [x for x, y in training_set]
         self.Y = [y for x, y in training_set]
         self.m = len(training_set)
@@ -20,9 +21,6 @@ class SVM:
 
     def classify(self, x):
         return 1 if self.f(x) >= 0 else -1
-
-    def kernel(self, x, z):
-        return np.exp(-np.linalg.norm(x-z, ord=2)/32)
 
     def f(self, x):
         f = 0
